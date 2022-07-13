@@ -32,7 +32,7 @@ public class WeatherServiceImpl implements WeatherService{
 			url += ("?" + URLEncoder.encode("serviceKey","UTF-8") + "=" + Config.weatherEncoding);
 			url += ("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과수 이거 필수값 아님 없애도 됨*/
 			url += ("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*현재 페이지 번호 이거 필수값 아님 없애도 됨*/
-			url += ("&" + URLEncoder.encode("regId","UTF-8") + "=" + URLEncoder.encode("11A00101", "UTF-8")); /*지역코드 */
+			url += ("&" + URLEncoder.encode("regId","UTF-8") + "=" + URLEncoder.encode("11F20501", "UTF-8")); /*지역코드 */
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
