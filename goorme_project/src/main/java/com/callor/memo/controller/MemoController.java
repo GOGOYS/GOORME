@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.callor.memo.model.MemoDTO;
+import com.callor.memo.model.UserVO;
 import com.callor.memo.model.WeatherVO;
 import com.callor.memo.service.MemoService;
 import com.callor.memo.service.WeatherService;
@@ -37,17 +38,15 @@ public class MemoController {
 	private WeatherService weatherService;
 	
 	@RequestMapping(value={"","/","/all"},method=RequestMethod.GET)
-	public String map(@ModelAttribute("memo") MemoDTO memo, HttpSession httpSession, Model model)throws IOException  {
+	public String map(@ModelAttribute("memo") MemoDTO memo, HttpSession session, Model model)throws IOException  {
 		
-		String username = (String) httpSession.getAttribute("USERNAME");
+		UserVO userVO = (UserVO) session.getAttribute("USER");
+		log.debug("바바바:{}",userVO.getU_userid());
+		log.debug("바바바:{}",userVO.getU_name());
 		
-		if(username == null) {
-			return "redirect:/user/login";
-		}
+		memo.setM_author(userVO.getU_name());
 		
-		memo.setM_author(username);
-		
-		List<MemoDTO> memoList = memoService.findByAuthor(username);
+		List<MemoDTO> memoList = memoService.findByAuthor(userVO.getU_name());
 		
 		List<String> mapx = new ArrayList<String>();
 		List<String> mapy = new ArrayList<String>();
@@ -65,6 +64,8 @@ public class MemoController {
 		
 
 		//log.debug(mapXY.toString());
+		model.addAttribute("NICKNAME",userVO.getU_name());
+		log.debug("아이야아야:{}",userVO.getU_name());
 		
 		model.addAttribute("arrMapX",arrayX);
 		model.addAttribute("arrMapY",arrayY);

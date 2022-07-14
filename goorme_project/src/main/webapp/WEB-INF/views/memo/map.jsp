@@ -362,7 +362,7 @@ div.memo-list-btn svg{
 	<!-- insert 창 -->
 	<form class="input-form" method="POST" enctype="multipart/form-data">
 		<div class="input-info">
-			<p>${USERNAME}님의 구르미</p>
+			<p>${NICKNAME}님의 구르미</p>
 			<div class="btn-close" onclick="btn-close"><i class="fa-solid fa-x"></i></div>
 		</div>
 		<input name="m_title" placeholder="제목을 입력하세요" value="${MEMO.m_title}">
@@ -401,7 +401,7 @@ div.memo-list-btn svg{
 		</div>
 		<div class="memo-list-wrap">
 			<div class="memo-list-info">
-				<p>${USERNAME}님의 구르미</p>
+				<p>${NICKNAME}님의 구르미</p>
 			</div>
 			<div class="memo-list-view">
 				<%-- <c:if test="${NOMEMO == null}">

@@ -31,9 +31,11 @@ public class UserController {
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public String login(UserVO userVO,HttpSession session,Model model) {
 		
+		log.debug("1 :{}",userVO.getU_userid());
 		String message = null;
 		
 		UserVO user = userService.findById(userVO.getU_userid());
+		log.debug("아아아아아 : {}",user.toString());
 		
 		if(user.getU_userid() == null) {
 			message= "USER_ID FAIL";
@@ -41,22 +43,20 @@ public class UserController {
 			message= "USER_PASSWORD FAIL";
 		}
 		
-		log.debug(message);
 		if(message == null) {
 			session.setAttribute("USER", userVO);
-		}else {
-			session.removeAttribute("USER");
+			log.debug("세선 뒤:{}",userVO.getU_userid());
 		}
-		
 		model.addAttribute("LOGIN_MESSAAGE",message);
-		
 		return "redirect:/";
+		
+		
 	}
 		
 	
 	@RequestMapping(value="/logout",method=RequestMethod.GET)
 	public String logout(HttpSession session) {
-		session.removeAttribute("USERNAME");
+		session.removeAttribute("USER");
 		return "redirect:/";
 	}
 	

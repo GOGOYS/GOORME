@@ -47,8 +47,8 @@
 			<h1>로그인</h1>	
 		</div>	
 		<form method="POST">
-			<input name="u_username" placeholder="USERNAME">
-			<input name="username" placeholder="PASSWORD">
+			<input name="u_userid" placeholder="USERNAME">
+			<input name="u_password" placeholder="PASSWORD">
 			<button>로그인</button>
 		</form>
 	</div>

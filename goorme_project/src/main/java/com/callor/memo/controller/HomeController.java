@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 public class HomeController {
 	
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = {"/","/login-ok"}, method = RequestMethod.GET)
 	public String home(Model model, HttpSession session) {
 		UserVO user = (UserVO)session.getAttribute("USER");
 		return "home";
