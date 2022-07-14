@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.callor.memo.persistance.FollowDao">
+ 
+ 	<select id="selectAll" resultType="FollowVO">
+ 		SELECT * FROM tbl_follows
+ 		WHERE f_seq = #{f_seq}
+ 	</select>
+ 	<select id="findById" resultType="FollowVO">
+ 		SELECT * FROM tbl_follows
+ 		WHERE f_from_user  = #{f_from_user}
+ 	</select>
+ 	<select id="findByAuthor" resultType="FollowVO">
+ 		SELECT * FROM tbl_follows
+ 		WHERE f_to_user = #{f_to_user}
+ 	</select>
+ 	<insert id="insert" parameterType="FollowVO">
+ 		INSERT INTO tbl_follows(
+ 			f_seq,
+ 			f_from_user,
+ 			f_to_user 
+ 		) VALUES (
+ 			#{f_seq},
+ 			#{f_from_user},
+ 			#{f_to_user} 
+ 		)
+ 	</insert>
+ 	<update id="update" parameterType="FollowVO">
+ 		UPDATE tbl_follows SET
+ 			f_from_user = #{u_from_user},
+ 			f_to_user = #{u_to_user},
+ 		WHERE f_seq = #{f_seq}
+ 	</update>
+ 	<delete id="delete">
+ 		DELETE FROM tbl_follows
+ 		WHERE f_seq = #{f_seq}
+ 	</delete>
+ 	
+ 	<select id="create_follow_table">
+ 		CREATE TABLE IF NOT EXISTS tbl_follows(
+ 			f_seq BIGINT PRIMARY KEY AUTO_INCREMENT,
+ 			f_from_user VARCHAR(20) NOT NULL,
+ 			f_to_user VARCHAR(20) NOT NULL
+ 		)
+ 	</select>
+ 
+ </mapper> 

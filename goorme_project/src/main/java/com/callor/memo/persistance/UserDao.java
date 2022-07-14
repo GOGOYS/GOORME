@@ -7,9 +7,12 @@ import com.callor.memo.model.UserVO;
 
 public interface UserDao {
 	
-	public List<UserDao> selectALL();
-	public UserVO findById(Long seq);
-	public int insert(UserVO memo);
-	public int update(UserVO memo);
+	public List<UserVO> selectAll();
+	public UserVO findById(String u_userid);
+	public UserVO findByName(String u_name);
+	public int insert(UserVO userVO);
+	public int update(UserVO userVO);
 	public int delete(Long seq);
+	
+	public void create_user_table();
 }

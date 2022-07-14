@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.callor.memo.persistance.UserDao">
+ 
+ 	<select id="selectAll" resultType="UserVO">
+ 		SELECT * FROM tbl_users
+ 		WHERE u_seq = #{u_seq}
+ 	</select>
+ 	<select id="findById" resultType="UserVO">
+ 		SELECT * FROM tbl_users
+ 		WHERE u_userid = #{u_userid}
+ 	</select>
+ 	<select id="findByAName" resultType="UserVO">
+ 		SELECT * FROM tbl_users
+ 		WHERE u_name = #{u_name}
+ 	</select>
+ 	<insert id="insert" parameterType="UserVO">
+ 		INSERT INTO tbl_users(
+			u_seq,
+			u_userid,
+			u_password,
+			u_email,
+ 			u_name,
+ 			u_image,
+ 			u_up_image,
+ 			u_role
+ 		) VALUES (
+ 			#{u_seq},
+			#{u_userid},
+			#{u_password},
+			#{u_email},
+ 			#{u_name},
+ 			#{u_image},
+ 			#{u_up_image},
+ 			#{u_role}
+ 		)
+ 	</insert>
+ 	<update id="update" parameterType="UserVO">
+ 		UPDATE tbl_users SET
+ 			u_userid = #{u_userid},
+ 			u_password = #{u_password},
+ 			u_email = #{u_email},
+ 			u_name = #{u_name},
+ 			u_image = #{u_image},
+ 			u_up_image = #{u_up_image},
+ 			u_role = #{u_role}
+ 		WHERE u_seq = #{u_seq}
+ 	</update>
+ 	<delete id="delete">
+ 		DELETE FROM tbl_users
+ 		WHERE u_seq = #{u_seq}
+ 	</delete>
+ 	
+ 	<select id="create_user_table">
+ 		CREATE TABLE IF NOT EXISTS tbl_users(
+ 			u_seq BIGINT PRIMARY KEY AUTO_INCREMENT,
+ 			u_userid VARCHAR(20) NOT NULL UNIQUE,
+ 			u_password VARCHAR(20) NOT NULL,
+ 			u_email VARCHAR(30) NOT NULL UNIQUE,
+ 			u_name VARCHAR(8) NOT NULL UNIQUE,
+ 			u_image VARCHAR(125),
+ 			u_up_image VARCHAR(125),
+ 			u_role VARCHAR(5) NOT NULL
+ 		)
+ 	</select>
+
+ </mapper> 

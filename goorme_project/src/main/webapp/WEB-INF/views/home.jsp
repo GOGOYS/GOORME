@@ -58,12 +58,13 @@ body {
 			<img src="${rootPath}/static/image/logoWhite.png">
 		</div>
 		<div class="btn">
-			<a href="${rootPath}/memo/map">리스트 보기</a>
-			<c:if test="${empty USERNAME}">
-				<a href="${rootPath}/user/login">로그인하기</a>
+			<c:if test="${empty USER}">
+				<a href="${rootPath}/user/join">회원가입</a>
+				<a href="${rootPath}/user/login">로그인</a>
 			</c:if>
-			<c:if test="${not empty USERNAME}">
-				<a href="${rootPath}/user/logout">로그아웃하기</a>
+			<c:if test="${not empty USER}">
+				<a href="${rootPath}/memo/map">리스트 보기</a>
+				<a href="${rootPath}/user/logout">로그아웃</a>
 			</c:if>
 		</div>
 	</div>

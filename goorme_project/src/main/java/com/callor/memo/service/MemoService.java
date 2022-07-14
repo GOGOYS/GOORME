@@ -14,7 +14,6 @@ public interface MemoService{
 	public int delete(Long seq);
 	
 	public MemoDTO findById(Long seq);
-
 	public List<MemoDTO> findByAuthor(String username);
 	
 

@@ -21,22 +21,21 @@ public class MemoServiceImplV1 implements MemoService{
 	protected final MemoDao memoDao;
 	
 	public MemoServiceImplV1(FileUpService fileUp, MemoDao memoDao) {
-		
 		this.fileUp = fileUp;
 		this.memoDao = memoDao;
 		// TODO Auto-generated constructor stub
 	}
 	
 	@Autowired
-	public void create_tale() {
+	@Override
+	public void create_memo_table() {
 		memoDao.create_memo_table();
 	}
-	
 
 	@Override
 	public List<MemoDTO> selectAll() {
 		// TODO Auto-generated method stub
-		return memoDao.selectALL();
+		return memoDao.selectAll();
 	}
 
 	@Override
@@ -127,11 +126,6 @@ public class MemoServiceImplV1 implements MemoService{
 		return memoDao.findByIcon(Icon);
 	}
 
-	@Override
-	public void create_memo_table() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public List<MemoDTO> findByPersonal(String Personal) {

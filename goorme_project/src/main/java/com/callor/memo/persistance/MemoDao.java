@@ -6,7 +6,7 @@ import com.callor.memo.model.MemoDTO;
 
 public interface MemoDao {
 	
-	public List<MemoDTO> selectALL();
+	public List<MemoDTO> selectAll();
 	public MemoDTO findById(Long seq);
 	public int insert(MemoDTO memo);
 	public int update(MemoDTO memo);
