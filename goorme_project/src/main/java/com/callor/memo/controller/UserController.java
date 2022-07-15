@@ -35,7 +35,6 @@ public class UserController {
 		String message = null;
 		
 		UserVO user = userService.findById(userVO.getU_userid());
-		log.debug("아아아아아 : {}",user.toString());
 		
 		if(user.getU_userid() == null) {
 			message= "USER_ID FAIL";
@@ -44,8 +43,7 @@ public class UserController {
 		}
 		
 		if(message == null) {
-			session.setAttribute("USER", userVO);
-			log.debug("세선 뒤:{}",userVO.getU_userid());
+			session.setAttribute("USER", user);
 		}
 		model.addAttribute("LOGIN_MESSAAGE",message);
 		return "redirect:/";
@@ -71,8 +69,6 @@ public class UserController {
 		UserVO userid = userService.findById(userVO.getU_userid());
 		if(userid == null) {
 			userService.insert(userVO);			
-		}else {
-			return "이미 가입 되어있음";
 		}
 		return "redirect:/user/login";
 	}

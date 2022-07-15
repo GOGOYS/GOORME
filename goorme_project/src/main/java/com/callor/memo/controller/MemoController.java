@@ -41,8 +41,10 @@ public class MemoController {
 	public String map(@ModelAttribute("memo") MemoDTO memo, HttpSession session, Model model)throws IOException  {
 		
 		UserVO userVO = (UserVO) session.getAttribute("USER");
-		log.debug("바바바:{}",userVO.getU_userid());
-		log.debug("바바바:{}",userVO.getU_name());
+		
+		if(userVO == null) {
+			return "redirect:/";
+		}
 		
 		memo.setM_author(userVO.getU_name());
 		
@@ -62,16 +64,10 @@ public class MemoController {
 		JSONArray arrayY = new JSONArray(mapy);
 		JSONArray arrayIcon = new JSONArray(icon);
 		
-
-		//log.debug(mapXY.toString());
-		model.addAttribute("NICKNAME",userVO.getU_name());
-		log.debug("아이야아야:{}",userVO.getU_name());
-		
 		model.addAttribute("arrMapX",arrayX);
 		model.addAttribute("arrMapY",arrayY);
 		model.addAttribute("arrIcon",arrayIcon);
 		model.addAttribute("MEMOS",memoList);
-		
 		
 		WeatherVO weatherVO = weatherService.getWeather();
 		String rnYn = weatherService.getRNYN(weatherVO);
@@ -118,9 +114,9 @@ public class MemoController {
 			 			 MultipartFile file, HttpSession httpSession) {
 		
 		//메모를 저장하기 전에 현재 session에 저장된 usename을 가져오기
-		String username = (String)httpSession.getAttribute("USERNAME");
+		UserVO userVO = (UserVO)httpSession.getAttribute("USER");
 		//저장할 메모 정보에 username 세팅
-		memo.setM_author(username);
+		memo.setM_author(userVO.getU_name());
 		log.debug(file.getOriginalFilename());
 		
 		
@@ -154,12 +150,12 @@ public class MemoController {
 			@ModelAttribute("memo") MemoDTO memoDTO, MultipartFile file, HttpSession session) {
 		
 		long m_seq = Long.valueOf(seq);
-		String username = (String)session.getAttribute("USERNAME");
+		UserVO userVO = (UserVO)session.getAttribute("USER");
 		
-		if(username == null) {
+		if(userVO == null) {
 			return "redirect:/user/login";
 		}
-		memoDTO.setM_author(username);
+		memoDTO.setM_author(userVO.getU_name());
 		memoDTO.setM_seq(m_seq);
 		memoService.insertAndUpdate(memoDTO, file);
 		return String.format("redirect:/memo/map/%s/detail",seq);
@@ -208,9 +204,9 @@ public class MemoController {
 		String icon = "/"+ root + "/"+ image + "/" +png;
 		
 		//메모를 저장하기 전에 현재 session에 저장된 usename을 가져오기
-		String username = (String)httpSession.getAttribute("USERNAME");
+		UserVO userVO = (UserVO)httpSession.getAttribute("USER");
 		//저장할 메모 정보에 username 세팅
-		memo.setM_author(username);
+		memo.setM_author(userVO.getU_name());
 		
 		
 		memoService.insertAndUpdate(memo, file);

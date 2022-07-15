@@ -362,7 +362,7 @@ div.memo-list-btn svg{
 	<!-- insert 창 -->
 	<form class="input-form" method="POST" enctype="multipart/form-data">
 		<div class="input-info">
-			<p>${NICKNAME}님의 구르미</p>
+			<p>${USER.u_name}님의 구르미</p>
 			<div class="btn-close" onclick="btn-close"><i class="fa-solid fa-x"></i></div>
 		</div>
 		<input name="m_title" placeholder="제목을 입력하세요" value="${MEMO.m_title}">
@@ -401,7 +401,7 @@ div.memo-list-btn svg{
 		</div>
 		<div class="memo-list-wrap">
 			<div class="memo-list-info">
-				<p>${NICKNAME}님의 구르미</p>
+				<p>${USER.u_name}님의 구르미</p>
 			</div>
 			<div class="memo-list-view">
 				<%-- <c:if test="${NOMEMO == null}">
@@ -444,14 +444,20 @@ div.memo-list-btn svg{
 
 	var map = new kakao.maps.Map(container, options);
 	
+	var imageSrcClick = '${rootPath}/static/image/logoBlue.png';  
+	var imageSizeClick = new kakao.maps.Size(69, 39); // 마커이미지의 크기입니다
+	var imageOptionClick = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+	var markerImageClick = new kakao.maps.MarkerImage(imageSrcClick, imageSizeClick, imageOptionClick);
 	
 	 // 지도를 클릭한 위치에 표출할 마커입니다
-	var marker = new kakao.maps.Marker({ 
+	var markerClick = new kakao.maps.Marker({ 
 	    // 지도 중심좌표에 마커를 생성합니다 
-	    position: map.getCenter() 
+	    position: map.getCenter(),
+	    image: markerImageClick 
 	}); 
 	// 지도에 마커를 표시합니다
-	marker.setMap(map); 
+	markerClick.setMap(map); 
 
 	// 지도에 클릭 이벤트를 등록합니다
 	// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
@@ -461,7 +467,7 @@ div.memo-list-btn svg{
 	    var latlng = mouseEvent.latLng; 
 	    
 	    // 마커 위치를 클릭한 위치로 옮깁니다
-	    marker.setPosition(latlng);		   
+	    markerClick.setPosition(latlng);		   
 	    
 	    document.getElementById('mapx').value = latlng.getLat(); 
 	    
@@ -483,13 +489,13 @@ div.memo-list-btn svg{
 	var mapY = ${arrMapY};
 	var icon = ${arrIcon};
 
-	// 지도에 표시된 마커 객체를 가지고 있을 배열입니다
+	// 서버에 저장된 마커 넣을 배열
 	var markers = [];
 
-	// 마커 하나를 지도위에 표시합니다 
+	// 서버에 저장된 마커리스트 표현
 	for(var i = 0; i < mapX.length; i++){	
 		var imageSrc = '${rootPath}' + icon[i];  
-    	var imageSize = new kakao.maps.Size(64, 30); // 마커이미지의 크기입니다
+    	var imageSize = new kakao.maps.Size(69, 39); // 마커이미지의 크기입니다
     	var imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
 		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);

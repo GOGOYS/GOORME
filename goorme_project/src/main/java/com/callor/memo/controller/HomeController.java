@@ -19,6 +19,8 @@ public class HomeController {
 	@RequestMapping(value = {"/","/login-ok"}, method = RequestMethod.GET)
 	public String home(Model model, HttpSession session) {
 		UserVO user = (UserVO)session.getAttribute("USER");
+		
+
 		return "home";
 	}
 	

@@ -45,12 +45,41 @@
 	<div class="login-box">
 		<div>
 			<h1>로그인</h1>	
+			<c:if test="${LOGIN_MESSAAGE == 'USER_ID FAIL' }">
+			<p>아이디가 틀립니다</p>
+			</c:if>
+			<c:if test="${LOGIN_MESSAAGE == 'USER_PASSWORD FAIL' }">
+			<p>비밀번호가 틀립니다</p>
+			</c:if>
 		</div>	
 		<form method="POST">
-			<input name="u_userid" placeholder="USERNAME">
-			<input name="u_password" placeholder="PASSWORD">
-			<button>로그인</button>
+			<input class="userid" name="u_userid" placeholder="USERNAME">
+			<input class="password" name="u_password" placeholder="PASSWORD">
+			<button class="btn_login">로그인</button>
 		</form>
 	</div>
 </body>
+<script>
+	const userid = document.querySelector("input.userid");
+	const password = document.querySelector("input.password");
+	const btn_login = document.querySelector("input.btn_login");
+	
+	btn_login.eventListener("click",()=>{
+		if(userid.value == ""){
+			alret("ID를 입력하세요");
+			userid.focus();
+			return false;
+		}
+		
+		if(password.value == ""){
+			alret("PASSWORD를 입력하세요");
+			password.focus();
+			return false;
+		}
+		
+		btn_login.submit();
+	})
+	
+	
+</script>
 </html>
