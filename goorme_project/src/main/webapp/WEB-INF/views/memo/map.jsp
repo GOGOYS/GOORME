@@ -56,7 +56,7 @@ nav.icon-memu-bar{
 	position: fixed;
 	top: 20px;
 	left: 140px;
-	width:910px;
+	width:840px;
 	height: 56px;
 	background-color: #fff;
 	border-radius: 8px;
@@ -332,7 +332,6 @@ div.memo-list-btn svg{
 			<li><a href="${rootPath}/memo/map/find/static/image/goorme(7).png"><img src="${rootPath}/static/image/goorme(7).png"></a></li>
 			<li><a href="${rootPath}/memo/map/find/static/image/goorme(8).png"><img src="${rootPath}/static/image/goorme(8).png"></a></li>
 			<li><a href="${rootPath}/memo/map/find/static/image/goorme(9).png"><img src="${rootPath}/static/image/goorme(9).png"></a></li>
-			<li><a href="${rootPath}/memo/map/find/static/image/goorme(10).png"><img src="${rootPath}/static/image/goorme(10).png"></a></li>
 			<li><a href="${rootPath}/memo/map/public">PUBLIC</a></li>
 		</ul>
 		
@@ -384,7 +383,6 @@ div.memo-list-btn svg{
 			<input type="radio" name="m_icon"  class="icon-radio" id="icon-btn-7" value="/static/image/goorme(7).png"/> <label for="icon-btn-7"><img src="${rootPath}/static/image/goorme(7).png"></label>
 			<input type="radio" name="m_icon"  class="icon-radio" id="icon-btn-8" value="/static/image/goorme(8).png"/> <label for="icon-btn-8"><img src="${rootPath}/static/image/goorme(8).png"></label>
 			<input type="radio" name="m_icon"  class="icon-radio" id="icon-btn-9" value="/static/image/goorme(9).png"/> <label for="icon-btn-9"><img src="${rootPath}/static/image/goorme(9).png"></label>
-			<input type="radio" name="m_icon"  class="icon-radio" id="icon-btn-10" value="/static/image/goorme(10).png"/> <label for="icon-btn-10"><img src="${rootPath}/static/image/goorme(10).png"></label>
 		</div>
 		<button type="submit">메모 기록</button>
 		<div class="personal-btn">
@@ -444,9 +442,9 @@ div.memo-list-btn svg{
 
 	var map = new kakao.maps.Map(container, options);
 	
-	var imageSrcClick = '${rootPath}/static/image/logoBlue.png';  
-	var imageSizeClick = new kakao.maps.Size(69, 39); // 마커이미지의 크기입니다
-	var imageOptionClick = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+	var imageSrcClick = '${rootPath}/static/image/markerCenter.png';  
+	var imageSizeClick = new kakao.maps.Size(46,32); // 마커이미지의 크기입니다
+	var imageOptionClick = {offset: new kakao.maps.Point(20,34)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
 	var markerImageClick = new kakao.maps.MarkerImage(imageSrcClick, imageSizeClick, imageOptionClick);
 	
@@ -494,9 +492,9 @@ div.memo-list-btn svg{
 
 	// 서버에 저장된 마커리스트 표현
 	for(var i = 0; i < mapX.length; i++){	
-		var imageSrc = '${rootPath}' + icon[i];  
-    	var imageSize = new kakao.maps.Size(69, 39); // 마커이미지의 크기입니다
-    	var imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+		var imageSrc = '${rootPath}/static/image/marker(' +[i+1] + ').png';  
+    	var imageSize = new kakao.maps.Size(46, 32); // 마커이미지의 크기입니다
+    	var imageOption = {offset: new kakao.maps.Point(20,34)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
 		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
 		var markerPosition = new kakao.maps.LatLng(mapX[i], mapY[i]);

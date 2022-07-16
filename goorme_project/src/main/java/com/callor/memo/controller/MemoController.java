@@ -69,10 +69,10 @@ public class MemoController {
 		model.addAttribute("arrIcon",arrayIcon);
 		model.addAttribute("MEMOS",memoList);
 		
-		WeatherVO weatherVO = weatherService.getWeather();
-		String rnYn = weatherService.getRNYN(weatherVO);
+		//WeatherVO weatherVO = weatherService.getWeather();
+		//String rnYn = weatherService.getRNYN(weatherVO);
 		
-		model.addAttribute("rnYn",rnYn);
+		//model.addAttribute("rnYn",rnYn);
 		
 		return "/memo/map";
 	}
