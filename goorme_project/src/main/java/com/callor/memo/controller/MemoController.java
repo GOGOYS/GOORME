@@ -84,20 +84,24 @@ public class MemoController {
 		
 		List<String> mapx = new ArrayList<String>();
 		List<String> mapy = new ArrayList<String>();
+		List<String> icon = new ArrayList<String>();
 		
 		for(int i=0; i < memoList.size(); i++) {
 			
 			mapx.add(memoList.get(i).getM_mapx());
 			mapy.add(memoList.get(i).getM_mapy());
+			icon.add(memoList.get(i).getM_icon());
 		}		
 		JSONArray arrayX = new JSONArray(mapx);
 		JSONArray arrayY = new JSONArray(mapy);
+		JSONArray arrIcon = new JSONArray(icon);
 		
 
 		//log.debug(mapXY.toString());
 		
-		model.addAttribute("mapX",arrayX);
-		model.addAttribute("mapY",arrayY);
+		model.addAttribute("arrMapX",arrayX);
+		model.addAttribute("arrMapY",arrayY);
+		model.addAttribute("arrIcon",arrIcon);
 		model.addAttribute("MEMOS",memoList);
 		
 		return "/memo/map";
@@ -172,24 +176,29 @@ public class MemoController {
 							 @PathVariable("image") String image,
 							 @PathVariable("png") String png, Model model) {
 		
-		String icon = "/"+ root + "/"+ image + "/" +png;
+		String iconUrl = "/"+ root + "/"+ image + "/" +png;
 		
-		List<MemoDTO> memoList =memoService.findByIcon(icon);
+		List<MemoDTO> memoList =memoService.findByIcon(iconUrl);
 				
 		List<String> mapx = new ArrayList<String>();
 		List<String> mapy = new ArrayList<String>();
+		List<String> icon = new ArrayList<String>();
 		
 		for(int i=0; i < memoList.size(); i++) {
 			
 			mapx.add(memoList.get(i).getM_mapx());
 			mapy.add(memoList.get(i).getM_mapy());
+			icon.add(memoList.get(i).getM_icon());
+			
 		}		
 		JSONArray arrayX = new JSONArray(mapx);
 		JSONArray arrayY = new JSONArray(mapy);
+		JSONArray arrIcon = new JSONArray(icon);
 		
 		
-		model.addAttribute("mapX",arrayX);
-		model.addAttribute("mapY",arrayY);
+		model.addAttribute("arrMapX",arrayX);
+		model.addAttribute("arrMapY",arrayY);
+		model.addAttribute("arrIcon",arrIcon);
 		model.addAttribute("MEMOS",memoList);
 		return "/memo/map";
 		

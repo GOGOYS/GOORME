@@ -492,7 +492,25 @@ div.memo-list-btn svg{
 
 	// 서버에 저장된 마커리스트 표현
 	for(var i = 0; i < mapX.length; i++){	
-		var imageSrc = '${rootPath}/static/image/marker(' +[i+1] + ').png';  
+		if(icon[i] == '/static/image/goorme(1).png'){
+			var imageSrc = '${rootPath}/static/image/marker(1).png';  	
+		} else if(icon[i] == '/static/image/goorme(2).png'){
+			var imageSrc = '${rootPath}/static/image/marker(2).png';  				
+		} else if(icon[i] == '/static/image/goorme(3).png'){
+			var imageSrc = '${rootPath}/static/image/marker(3).png';  				
+		} else if(icon[i] == '/static/image/goorme(4).png'){
+			var imageSrc = '${rootPath}/static/image/marker(4).png';  				
+		} else if(icon[i] == '/static/image/goorme(5).png'){
+			var imageSrc = '${rootPath}/static/image/marker(5).png';  				
+		} else if(icon[i] == '/static/image/goorme(6).png'){
+			var imageSrc = '${rootPath}/static/image/marker(6).png';  				
+		} else if(icon[i] == '/static/image/goorme(7).png'){
+			var imageSrc = '${rootPath}/static/image/marker(7).png';  				
+		} else if(icon[i] == '/static/image/goorme(8).png'){
+			var imageSrc = '${rootPath}/static/image/marker(8).png';  				
+		} else if(icon[i] == '/static/image/goorme(9).png'){
+			var imageSrc = '${rootPath}/static/image/marker(9).png';  				
+		}
     	var imageSize = new kakao.maps.Size(46, 32); // 마커이미지의 크기입니다
     	var imageOption = {offset: new kakao.maps.Point(20,34)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
