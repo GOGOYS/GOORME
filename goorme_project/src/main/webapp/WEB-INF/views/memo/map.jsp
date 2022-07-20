@@ -483,39 +483,37 @@ div.memo-list-btn svg{
 		document.querySelector('.input-form').style.display = "none";
 	});
 	
-	var mapX = ${arrMapX};
-	var mapY = ${arrMapY};
-	var icon = ${arrIcon};
+	var memoList = ${MEMOLIST};
 
 	// 서버에 저장된 마커 넣을 배열
 	var markers = [];
 
 	// 서버에 저장된 마커리스트 표현
-	for(var i = 0; i < mapX.length; i++){	
-		if(icon[i] == '/static/image/goorme(1).png'){
+	for(var i = 0; i < memoList.length; i++){	
+		if(memoList[i].m_icon == '/static/image/goorme(1).png'){
 			var imageSrc = '${rootPath}/static/image/marker(1).png';  	
-		} else if(icon[i] == '/static/image/goorme(2).png'){
+		} else if(memoList[i].m_icon == '/static/image/goorme(2).png'){
 			var imageSrc = '${rootPath}/static/image/marker(2).png';  				
-		} else if(icon[i] == '/static/image/goorme(3).png'){
+		} else if(memoList[i].m_icon == '/static/image/goorme(3).png'){
 			var imageSrc = '${rootPath}/static/image/marker(3).png';  				
-		} else if(icon[i] == '/static/image/goorme(4).png'){
+		} else if(memoList[i].m_icon == '/static/image/goorme(4).png'){
 			var imageSrc = '${rootPath}/static/image/marker(4).png';  				
-		} else if(icon[i] == '/static/image/goorme(5).png'){
+		} else if(memoList[i].m_icon == '/static/image/goorme(5).png'){
 			var imageSrc = '${rootPath}/static/image/marker(5).png';  				
-		} else if(icon[i] == '/static/image/goorme(6).png'){
+		} else if(memoList[i].m_icon == '/static/image/goorme(6).png'){
 			var imageSrc = '${rootPath}/static/image/marker(6).png';  				
-		} else if(icon[i] == '/static/image/goorme(7).png'){
+		} else if(memoList[i].m_icon == '/static/image/goorme(7).png'){
 			var imageSrc = '${rootPath}/static/image/marker(7).png';  				
-		} else if(icon[i] == '/static/image/goorme(8).png'){
+		} else if(memoList[i].m_icon == '/static/image/goorme(8).png'){
 			var imageSrc = '${rootPath}/static/image/marker(8).png';  				
-		} else if(icon[i] == '/static/image/goorme(9).png'){
+		} else if(memoList[i].m_icon == '/static/image/goorme(9).png'){
 			var imageSrc = '${rootPath}/static/image/marker(9).png';  				
 		}
     	var imageSize = new kakao.maps.Size(46, 32); // 마커이미지의 크기입니다
     	var imageOption = {offset: new kakao.maps.Point(20,34)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
 		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
-		var markerPosition = new kakao.maps.LatLng(mapX[i], mapY[i]);
+		var markerPosition = new kakao.maps.LatLng(memoList[i].m_mapx, memoList[i].m_mapy);
 		
 		 // 마커를 생성합니다
 	    var marker = new kakao.maps.Marker({
@@ -528,8 +526,49 @@ div.memo-list-btn svg{
 	    
 	    // 생성된 마커를 배열에 추가합니다
 	    markers.push(marker);
-	}
+	    
+	    if(memoList[i].m_image == null){
+	    	memoList[i].m_up_image = "memo/static/image/x(1).png"
+	    }
+	    
+		 // 마커에 표시할 인포윈도우를 생성합니다 
+		    var infowindow = new kakao.maps.InfoWindow({
+		        content: '<div class="wrap">' + 
+	            '    <div class="info">' + 
+	            '        <div class="title">' + 
+	            			memoList[i].m_title + 
+	            '        </div>' + 
+	            '        <div class="body">' + 
+	            '            <div class="img">' +
+	            '                <img src="/memo/upload/'+ memoList[i].m_up_image +'" width="73" height="70">' +
+	            '           </div>' + 
+	            '            <div class="desc">' + 
+	            '                <div class="ellipsis">'+ memoList[i].m_memo +'</div>' + 
+	            '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
+	            '            </div>' + 
+	            '        </div>' + 
+	            '    </div>' +    
+	            '</div>',
+		    });
+	 
+	    // 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
+	    // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+	    (function(marker, infowindow) {
+	        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+	        kakao.maps.event.addListener(marker, 'mouseover', function() {
+	            infowindow.open(map, marker);
+	        });
 
+	        // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
+	        kakao.maps.event.addListener(marker, 'mouseout', function() {
+	            infowindow.close();
+	        });
+	    })(marker, infowindow);
+	    
+
+	}
+	
+	
 </script>
 	<script src="${rootPath}/static/js/memo.js?ver=2022-07-11-005"></script>
 </html>

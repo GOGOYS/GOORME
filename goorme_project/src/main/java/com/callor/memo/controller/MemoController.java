@@ -50,35 +50,22 @@ public class MemoController {
 		
 		List<MemoDTO> memoList = memoService.findByAuthor(userVO.getU_name());
 		
-		List<String> mapx = new ArrayList<String>();
-		List<String> mapy = new ArrayList<String>();
-		List<String> icon = new ArrayList<String>();
+		JSONArray array = new JSONArray(memoList);
 		
-		for(int i=0; i < memoList.size(); i++) {
-			
-			mapx.add(memoList.get(i).getM_mapx());
-			mapy.add(memoList.get(i).getM_mapy());
-			icon.add(memoList.get(i).getM_icon());
-		}		
-		JSONArray arrayX = new JSONArray(mapx);
-		JSONArray arrayY = new JSONArray(mapy);
-		JSONArray arrayIcon = new JSONArray(icon);
-		
-		model.addAttribute("arrMapX",arrayX);
-		model.addAttribute("arrMapY",arrayY);
-		model.addAttribute("arrIcon",arrayIcon);
+		model.addAttribute("MEMOLIST",array);
+
 		model.addAttribute("MEMOS",memoList);
 		
-		//WeatherVO weatherVO = weatherService.getWeather();
-		//String rnYn = weatherService.getRNYN(weatherVO);
+		WeatherVO weatherVO = weatherService.getWeather();
+		String rnYn = weatherService.getRNYN(weatherVO);
 		
-		//model.addAttribute("rnYn",rnYn);
+		model.addAttribute("rnYn",rnYn);
 		
 		return "/memo/map";
 	}
 	
 	@RequestMapping(value={"/public"},method=RequestMethod.GET)
-	public String okPublic(@ModelAttribute("memo") MemoDTO memo, HttpSession httpSession, Model model) {
+	public String okPublic(@ModelAttribute("memo") MemoDTO memo, HttpSession httpSession, Model model)throws IOException  {
 		
 		List<MemoDTO> memoList = memoService.findByPersonal("OK");
 		
@@ -96,13 +83,16 @@ public class MemoController {
 		JSONArray arrayY = new JSONArray(mapy);
 		JSONArray arrIcon = new JSONArray(icon);
 		
-
-		//log.debug(mapXY.toString());
-		
 		model.addAttribute("arrMapX",arrayX);
 		model.addAttribute("arrMapY",arrayY);
 		model.addAttribute("arrIcon",arrIcon);
 		model.addAttribute("MEMOS",memoList);
+		
+		WeatherVO weather = weatherService.getWeather();
+		String rnYn = weatherService.getRNYN(weather);
+		
+		model.addAttribute("rnYn",rnYn);
+		
 		
 		return "/memo/map";
 	}
@@ -174,7 +164,7 @@ public class MemoController {
 	@RequestMapping(value="/find/{static}/{image}/{png:.+}",method=RequestMethod.GET)
 	public String iconChoice(@PathVariable("static") String root,
 							 @PathVariable("image") String image,
-							 @PathVariable("png") String png, Model model) {
+							 @PathVariable("png") String png, Model model) throws IOException {
 		
 		String iconUrl = "/"+ root + "/"+ image + "/" +png;
 		
@@ -200,6 +190,12 @@ public class MemoController {
 		model.addAttribute("arrMapY",arrayY);
 		model.addAttribute("arrIcon",arrIcon);
 		model.addAttribute("MEMOS",memoList);
+		
+		WeatherVO weather = weatherService.getWeather();
+		String rnYn = weatherService.getRNYN(weather);
+		
+		model.addAttribute("rnYn",rnYn);
+		
 		return "/memo/map";
 		
 	}
