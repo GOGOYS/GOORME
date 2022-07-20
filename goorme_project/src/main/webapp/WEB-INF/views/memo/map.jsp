@@ -527,8 +527,11 @@ div.memo-list-btn svg{
 	    // 생성된 마커를 배열에 추가합니다
 	    markers.push(marker);
 	    
-	    if(memoList[i].m_image == null){
-	    	memoList[i].m_up_image = "memo/static/image/x(1).png"
+	    	console.log("여기1 "+ memoList[i].m_image);
+	    if(!memoList[i].m_image){
+	    	console.log("여기2 "+ memoList[i].m_image);
+	    	memoList[i].m_up_image += "x(1).png";
+	    	console.log("여기3 "+ memoList[i].m_up_image);
 	    }
 	    
 		 // 마커에 표시할 인포윈도우를 생성합니다 
