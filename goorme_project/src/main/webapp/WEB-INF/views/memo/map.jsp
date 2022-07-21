@@ -547,7 +547,6 @@ div.memo-list-btn svg{
 	            '           </div>' + 
 	            '            <div class="desc">' + 
 	            '                <div class="ellipsis">'+ memoList[i].m_memo +'</div>' + 
-	            '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
 	            '            </div>' + 
 	            '        </div>' + 
 	            '    </div>' +    

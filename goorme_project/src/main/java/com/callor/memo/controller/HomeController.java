@@ -24,6 +24,11 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value="memo/ex",method=RequestMethod.GET)
+	public String ex() {
+		return "memo/ex";
+	}
+	
 	
 	
 }
