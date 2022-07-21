@@ -8,24 +8,57 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+	*{
+		box-sizing: border-box;
+		margin:0;
+		padding:0;
+	}	
 	.infowindow-background{
-		background-color: black;
-		
+		background-color: #aaa;	
+		border-radius:8px;
+		width:240px;
+		height: 120px;
+		margin:30px;
+		padding:10px 8px;
+	}
+	
+	.infowindow-info{
+		display: flex;
+		border-bottom: 1px solid black;
+	}
+	.infowindow-info img{
+		width: 20px;
+		height: 20px;
+		overflow: hidden;
+		border-radius: 50%;
+	}
+	
+	.infowindow-head{
+		margin-top:5px;
+		border-bottom: 1px solid black;
+	}
+	
+	.infowindow-body div{
+		width:224px;
+		height: 60px;
+		overflow: hidden;
 	}
 	
 </style>
 </head>
 <body>
-	<div class="infowindow-backgound">
+	<div class="infowindow-background">
 		<div class="infowindow-info">
-			<div>author</div>
-			<div>title</div>
+			<img src="${rootPath}/static/image/x(1).png"/>
+			<div class="infowindow-author">작성자</div>
+			<div class="infowindow-count">10번째 구름</div>
 		</div>
-		<div>
-			<img src="${rootPath}/static/image/(x).png"/>
+		<div class="infowindow-head">
+			<div>제목</div>
 		</div>
-		<div>
-			<div>메모메메메멩ㄴㅁㅇㅁㄴㄹㅈㄹㅈㄹㅈㄹㅈㄻㅊㄴ윤ㅁㅍ렂ㅍ첲ㅁㄴ츤ㅁ</div>
+		<div class="infowindow-body">
+			<div>메모메메메멩ㄴㅁㅇㅁㄴㄹㅈㄹㅈㄹㅈㄹㅈㄻㅊㄴ윤ㅁㅍ렂ㅍ첲ㅁㄴ츤ㅁfwfffffffffffffffffffffffffffffffffffffffffffffffffffff
+			메모메메메멩ㄴㅁㅇㅁㄴㄹㅈㄹㅈㄹㅈㄹㅈㄻㅊㄴ윤ㅁㅍ렂ㅍ첲ㅁㄴ츤ㅁfwfffffffffffffffffffffffffffffffffffffffffffffffffffff</div>
 		</div>
 	</div>
 

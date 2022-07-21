@@ -241,7 +241,6 @@ img.memo-list-m_icon{
 
 div.memo-list-m_image{
 	width: 400px;
-	height: 160px;
 	overflow: hidden;
 	margin-top:4px;
 }
@@ -536,18 +535,13 @@ div.memo-list-btn svg{
 	    
 		 // 마커에 표시할 인포윈도우를 생성합니다 
 		    var infowindow = new kakao.maps.InfoWindow({
-		        content: '<div class="wrap">' + 
-	            '    <div class="info">' + 
-	            '        <div class="title">' + 
+		        content: '<div class="info-wrap">' + 
+	            '    <div class="info-head">' + 
+	            '        <div class="info-title">' + 
 	            			memoList[i].m_title + 
 	            '        </div>' + 
-	            '        <div class="body">' + 
-	            '            <div class="img">' +
-	            '                <img src="/memo/upload/'+ memoList[i].m_up_image +'" width="73" height="70">' +
-	            '           </div>' + 
-	            '            <div class="desc">' + 
-	            '                <div class="ellipsis">'+ memoList[i].m_memo +'</div>' + 
-	            '            </div>' + 
+	            '        <div class="info-body">' + 
+	            '        	<div class="info-memo">'+ memoList[i].m_memo +'</div>' + 
 	            '        </div>' + 
 	            '    </div>' +    
 	            '</div>',
