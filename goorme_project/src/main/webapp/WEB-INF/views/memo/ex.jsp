@@ -31,17 +31,29 @@
 		height: 20px;
 		overflow: hidden;
 		border-radius: 50%;
+		margin-right:4px;
 	}
 	
 	.infowindow-head{
+		display: flex;
+	}
+	
+	.infowindow-title{
 		margin-top:5px;
-		border-bottom: 1px solid black;
+	 	font-size: 20px;
 	}
 	
 	.infowindow-body div{
 		width:224px;
-		height: 60px;
+		height: 40px;
 		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	
+	.infowindow-count{
+		font-size: 10px;
+		margin-left:auto;
 	}
 	
 </style>
@@ -51,10 +63,11 @@
 		<div class="infowindow-info">
 			<img src="${rootPath}/static/image/x(1).png"/>
 			<div class="infowindow-author">작성자</div>
-			<div class="infowindow-count">10번째 구름</div>
+			<div class="infowindow-like">좋아요</div>
 		</div>
 		<div class="infowindow-head">
-			<div>제목</div>
+			<div class="infowindow-title">제목</div>
+			<div class="infowindow-count">10번째 구름</div>
 		</div>
 		<div class="infowindow-body">
 			<div>메모메메메멩ㄴㅁㅇㅁㄴㄹㅈㄹㅈㄹㅈㄹㅈㄻㅊㄴ윤ㅁㅍ렂ㅍ첲ㅁㄴ츤ㅁfwfffffffffffffffffffffffffffffffffffffffffffffffffffff
