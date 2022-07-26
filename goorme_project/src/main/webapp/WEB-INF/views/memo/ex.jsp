@@ -5,8 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<%@ include file="/WEB-INF/views/include/head.jsp" %>
 <style>
 	*{
 		box-sizing: border-box;
@@ -16,14 +15,15 @@
 	.infowindow-background{
 		background-color: #aaa;	
 		border-radius:8px;
-		width:240px;
-		height: 120px;
+		width:260px;
+		height: 108px;
 		margin:30px;
-		padding:10px 8px;
+		padding:12px 16px;
 	}
 	
 	.infowindow-info{
 		display: flex;
+		padding-bottom: 3px;
 		border-bottom: 1px solid black;
 	}
 	.infowindow-info img{
@@ -32,6 +32,9 @@
 		overflow: hidden;
 		border-radius: 50%;
 		margin-right:4px;
+	}
+	.infowindow-author{
+		margin-right: auto;
 	}
 	
 	.infowindow-head{
@@ -54,6 +57,7 @@
 	.infowindow-count{
 		font-size: 10px;
 		margin-left:auto;
+		margin-top:14px;
 	}
 	
 </style>
@@ -63,17 +67,15 @@
 		<div class="infowindow-info">
 			<img src="${rootPath}/static/image/x(1).png"/>
 			<div class="infowindow-author">작성자</div>
-			<div class="infowindow-like">좋아요</div>
+			<i class="fa-solid fa-heart"></i>
 		</div>
 		<div class="infowindow-head">
 			<div class="infowindow-title">제목</div>
 			<div class="infowindow-count">10번째 구름</div>
 		</div>
 		<div class="infowindow-body">
-			<div>메모메메메멩ㄴㅁㅇㅁㄴㄹㅈㄹㅈㄹㅈㄹㅈㄻㅊㄴ윤ㅁㅍ렂ㅍ첲ㅁㄴ츤ㅁfwfffffffffffffffffffffffffffffffffffffffffffffffffffff
-			메모메메메멩ㄴㅁㅇㅁㄴㄹㅈㄹㅈㄹㅈㄹㅈㄻㅊㄴ윤ㅁㅍ렂ㅍ첲ㅁㄴ츤ㅁfwfffffffffffffffffffffffffffffffffffffffffffffffffffff</div>
+			<div>메모</div>
 		</div>
 	</div>
-
 </body>
 </html>

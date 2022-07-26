@@ -7,6 +7,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
+<link rel="stylesheet" href="${rootPath}/static/css/infowindow.css?ver=2022-07-27">
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=893369622e6174e9707bd86f1b9af909&libraries=services,clusterer"></script>
 <style>
@@ -535,16 +536,21 @@ div.memo-list-btn svg{
 	    
 		 // 마커에 표시할 인포윈도우를 생성합니다 
 		    var infowindow = new kakao.maps.InfoWindow({
-		        content: '<div class="info-wrap">' + 
-	            '    <div class="info-head">' + 
-	            '        <div class="info-title">' + 
-	            			memoList[i].m_title + 
-	            '        </div>' + 
-	            '        <div class="info-body">' + 
-	            '        	<div class="info-memo">'+ memoList[i].m_memo +'</div>' + 
-	            '        </div>' + 
-	            '    </div>' +    
-	            '</div>',
+		        content: 
+	            '<div class="infowindow-background">'+
+					'<div class="infowindow-info">'+
+						'<img src="${rootPath}/static/image/x(1).png"/>'+
+						'<div class="infowindow-author">' + memoList[i].m_author +'</div>'+
+						'<i class="fa-solid fa-heart"></i>'+
+					'</div>'+
+					'<div class="infowindow-head">'+
+						'<div class="infowindow-title">'+ memoList[i].m_title +'</div>'+
+						'<div class="infowindow-count">10번째 구름</div>'+
+					'</div>'+
+					'<div class="infowindow-body">'+
+						'<div>'+ memoList[i].m_memo +'</div>'+
+					'</div>'+
+				'</div>',
 		    });
 	 
 	    // 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
