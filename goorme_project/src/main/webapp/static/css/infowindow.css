@@ -6,12 +6,9 @@
 		padding:0;
 	}	
 	.infowindow-background{
-		background-color: #aaa;	
-		border-radius:8px;
 		width:260px;
 		height: 108px;
-		margin:30px;
-		padding:12px 16px;
+		margin: 12px 12px 0 12px;
 	}
 	
 	.infowindow-info{

@@ -7,7 +7,7 @@
 <html>
 <head>
 <%@ include file="/WEB-INF/views/include/head.jsp" %>
-<link rel="stylesheet" href="${rootPath}/static/css/infowindow.css?ver=2022-07-27">
+<link rel="stylesheet" href="${rootPath}/static/css/infowindow.css?ver=2022-08-02-007">
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=893369622e6174e9707bd86f1b9af909&libraries=services,clusterer"></script>
 <style>
@@ -121,8 +121,8 @@ div.weather-icon{
 }
 
 .input-form{
-	width:500px;
-	height: 580px;
+	width:540px;
+	height: 560px;
 	position: fixed;
 	top:50%;
 	left: 50%;
@@ -158,14 +158,21 @@ input.icon-radio:checked +label{
 }
 
 input[name=m_title]{
-	width: 488px;
 	padding:5px;
 	margin-bottom: 8px;
+}
+
+.text-input{
+	width: 100%;
 }
 
 
 div.input-icon-box{
 	margin-top:20px;
+}
+
+div.input-icon-box img{
+	width: 50px;
 }
 
 div.input-icon-box p{
@@ -203,7 +210,7 @@ div.personal-btn input{
 	color: #fff;
 }
 div.memo-list-wrap{
-	width:24vw;;
+	width:500px;
 	height: 100vh;
 	background-color: #fff;
 
@@ -364,8 +371,8 @@ div.memo-list-btn svg{
 			<p>${USER.u_name}님의 구르미</p>
 			<div class="btn-close" onclick="btn-close"><i class="fa-solid fa-x"></i></div>
 		</div>
-		<input name="m_title" placeholder="제목을 입력하세요" value="${MEMO.m_title}">
-		<textarea name="m_memo" placeholder="메모를 입력하세요" cols="69" rows="16">${MEMO.m_memo}</textarea> 
+		<input class="text-input" name="m_title" placeholder="제목을 입력하세요" value="${MEMO.m_title}">
+		<textarea class="text-input" name="m_memo" placeholder="메모를 입력하세요" cols="69" rows="12">${MEMO.m_memo}</textarea> 
 		<input name="m_seq" type="hidden" value='<c:out value="${MEMO.m_seq}" default="0"/>'/>
 		<input name="m_weather" type="hidden" value="${rnYn}"/>
 		<input id="mapx" name="m_mapx" type="hidden" value=""/> 
@@ -432,6 +439,7 @@ div.memo-list-btn svg{
 	</div>	
 
 </body>
+
 <script>
 	const rootPath = "${rootPath}"
 	var container = document.getElementById('map');
@@ -526,51 +534,42 @@ div.memo-list-btn svg{
 	    
 	    // 생성된 마커를 배열에 추가합니다
 	    markers.push(marker);
-	    
-	    	console.log("여기1 "+ memoList[i].m_image);
-	    if(!memoList[i].m_image){
-	    	console.log("여기2 "+ memoList[i].m_image);
-	    	memoList[i].m_up_image += "x(1).png";
-	    	console.log("여기3 "+ memoList[i].m_up_image);
-	    }
-	    
-		 // 마커에 표시할 인포윈도우를 생성합니다 
-		    var infowindow = new kakao.maps.InfoWindow({
-		        content: 
-	            '<div class="infowindow-background">'+
-					'<div class="infowindow-info">'+
-						'<img src="${rootPath}/static/image/x(1).png"/>'+
-						'<div class="infowindow-author">' + memoList[i].m_author +'</div>'+
-						'<i class="fa-solid fa-heart"></i>'+
-					'</div>'+
-					'<div class="infowindow-head">'+
-						'<div class="infowindow-title">'+ memoList[i].m_title +'</div>'+
-						'<div class="infowindow-count">10번째 구름</div>'+
-					'</div>'+
-					'<div class="infowindow-body">'+
-						'<div>'+ memoList[i].m_memo +'</div>'+
-					'</div>'+
-				'</div>',
-		    });
-	 
-	    // 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
-	    // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-	    (function(marker, infowindow) {
-	        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
-	        kakao.maps.event.addListener(marker, 'mouseover', function() {
-	            infowindow.open(map, marker);
-	        });
 
-	        // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
-	        kakao.maps.event.addListener(marker, 'mouseout', function() {
-	            infowindow.close();
-	        });
-	    })(marker, infowindow);
-	    
+	    // 마커에 표시할 인포윈도우를 생성합니다 
+	    var infowindow = new kakao.maps.InfoWindow({
+	        content: 
+            '<div class="infowindow-background">'+
+				'<div class="infowindow-info">'+
+					'<img src="${rootPath}/static/image/x(1).png"/>'+
+					'<div class="infowindow-author">' + memoList[i].m_author +'</div>'+
+					'<i class="fa-solid fa-heart"></i>'+
+				'</div>'+
+				'<div class="infowindow-head">'+
+					'<div class="infowindow-title">'+ memoList[i].m_title +'</div>'+
+					'<div class="infowindow-count">'+ memoList[i].m_seq +'번째 구름</div>'+
+				'</div>'+
+				'<div class="infowindow-body">'+
+					'<div>'+ memoList[i].m_memo +'</div>'+
+				'</div>'+
+			'</div>',
+	    });
+ 
+    // 마커에 이벤트를 등록하는 함수 만들고 즉시 호출하여 클로저를 만듭니다
+    // 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+    (function(marker, infowindow) {
+        // 마커에 mouseover 이벤트를 등록하고 마우스 오버 시 인포윈도우를 표시합니다 
+        kakao.maps.event.addListener(marker, 'mouseover', function() {
+            infowindow.open(map, marker);
+        });
+        // 마커에 mouseout 이벤트를 등록하고 마우스 아웃 시 인포윈도우를 닫습니다
+        kakao.maps.event.addListener(marker, 'mouseout', function() {
+            infowindow.close();
+        });
+    })(marker, infowindow);
 
 	}
-	
-	
+
 </script>
 	<script src="${rootPath}/static/js/memo.js?ver=2022-07-11-005"></script>
+	<script src="${rootPath}/static/js/slide.js?ver=2022-08-02-004"></script>
 </html>

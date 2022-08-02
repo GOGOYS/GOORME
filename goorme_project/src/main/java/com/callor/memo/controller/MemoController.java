@@ -68,30 +68,17 @@ public class MemoController {
 	public String okPublic(@ModelAttribute("memo") MemoDTO memo, HttpSession httpSession, Model model)throws IOException  {
 		
 		List<MemoDTO> memoList = memoService.findByPersonal("OK");
+	
+
+		JSONArray array = new JSONArray(memoList);
 		
-		List<String> mapx = new ArrayList<String>();
-		List<String> mapy = new ArrayList<String>();
-		List<String> icon = new ArrayList<String>();
-		
-		for(int i=0; i < memoList.size(); i++) {
-			
-			mapx.add(memoList.get(i).getM_mapx());
-			mapy.add(memoList.get(i).getM_mapy());
-			icon.add(memoList.get(i).getM_icon());
-		}		
-		JSONArray arrayX = new JSONArray(mapx);
-		JSONArray arrayY = new JSONArray(mapy);
-		JSONArray arrIcon = new JSONArray(icon);
-		
-		model.addAttribute("arrMapX",arrayX);
-		model.addAttribute("arrMapY",arrayY);
-		model.addAttribute("arrIcon",arrIcon);
+		model.addAttribute("MEMOLIST",array);
 		model.addAttribute("MEMOS",memoList);
 		
-//		WeatherVO weather = weatherService.getWeather();
-//		String rnYn = weatherService.getRNYN(weather);
-//		
-//		model.addAttribute("rnYn",rnYn);
+		WeatherVO weather = weatherService.getWeather();
+		String rnYn = weatherService.getRNYN(weather);
+		
+		model.addAttribute("rnYn",rnYn);
 		
 		
 		return "/memo/map";
@@ -103,7 +90,7 @@ public class MemoController {
 	 * form의 file input box의 이름은 절대 VO, DTO에 선언된 이름을 사용하면 안된다.
 	 * 타입이 달라서 400 오류가 뜬다.
 	 */
-	@RequestMapping(value={"","/","/all","/public"},method=RequestMethod.POST)
+	@RequestMapping(value={"","/","/all"},method=RequestMethod.POST)
 	public String insert(@ModelAttribute("memo") MemoDTO memo,
 			 			 MultipartFile file, HttpSession httpSession) {
 		
@@ -118,6 +105,24 @@ public class MemoController {
 		
 		return "redirect:/memo/map";
 	}	
+	
+	
+	@RequestMapping(value="/public",method=RequestMethod.POST)
+	public String insertPublic(@ModelAttribute("memo") MemoDTO memo,
+			MultipartFile file, HttpSession httpSession) {
+		
+		//메모를 저장하기 전에 현재 session에 저장된 usename을 가져오기
+		UserVO userVO = (UserVO)httpSession.getAttribute("USER");
+		//저장할 메모 정보에 username 세팅
+		memo.setM_author(userVO.getU_name());
+		log.debug(file.getOriginalFilename());
+		
+		
+		memoService.insertAndUpdate(memo, file);
+		
+		return "redirect:/memo/map/public";
+	}	
+	
 	
 	@RequestMapping(value="/detail/{seq}", method=RequestMethod.GET)
 	public String detail(@PathVariable("seq") String seq, @ModelAttribute("memo") MemoDTO memo, Model model) {
@@ -168,27 +173,12 @@ public class MemoController {
 		
 		String iconUrl = "/"+ root + "/"+ image + "/" +png;
 		
-		List<MemoDTO> memoList =memoService.findByIcon(iconUrl);
-				
-		List<String> mapx = new ArrayList<String>();
-		List<String> mapy = new ArrayList<String>();
-		List<String> icon = new ArrayList<String>();
+		List<MemoDTO> memoList = memoService.findByIcon(iconUrl);
 		
-		for(int i=0; i < memoList.size(); i++) {
-			
-			mapx.add(memoList.get(i).getM_mapx());
-			mapy.add(memoList.get(i).getM_mapy());
-			icon.add(memoList.get(i).getM_icon());
-			
-		}		
-		JSONArray arrayX = new JSONArray(mapx);
-		JSONArray arrayY = new JSONArray(mapy);
-		JSONArray arrIcon = new JSONArray(icon);
+		JSONArray array = new JSONArray(memoList);
 		
-		
-		model.addAttribute("arrMapX",arrayX);
-		model.addAttribute("arrMapY",arrayY);
-		model.addAttribute("arrIcon",arrIcon);
+		model.addAttribute("MEMOLIST",array);
+
 		model.addAttribute("MEMOS",memoList);
 		
 		WeatherVO weather = weatherService.getWeather();
