@@ -18,46 +18,16 @@
 	list-style: none;
 }
 
-
 .container {
 	display: flex;
 	background-color: #45AFFF;
 }
 
-header{
-	width:120px;
-}
-
-header .logoBlue img{
-	width: 80px;
-	margin: 26px 0 20px 15px ;
-}
-
-nav.menu-bar ul{
-	display: flex;
-	flex-direction: column;
-}
-nav.menu-bar li{
-	margin-top:40px;
-}
-nav.menu-bar li a{
-	color: #fff;
-	text-decoration: none;
-		font-size: 20px;
-	padding: 20px 36px;
-}
-nav.menu-bar li a:hover{
-	background-color: #fff;
-	color:#45AFFF;
-	font-weight: 900;
-}
-
-
 nav.icon-memu-bar{
 	position: fixed;
 	top: 20px;
-	left: 140px;
-	width:840px;
+	left: 40px;
+	width:856px;
 	height: 56px;
 	background-color: #fff;
 	border-radius: 8px;
@@ -97,7 +67,7 @@ nav.icon-memu-bar ul li a:first-child{
 div.weather-today{
 	position:fixed;
 	top:20px;
-	left: 1080px;
+	left: 920px;
 	background-color: #fff;
 	width:152px;
 	height: 44px;
@@ -292,44 +262,16 @@ div.container-wrap{
 	color: #45AFFF;
 }
 
-.memo-list-btn{
-	margin-top:340px;
-	margin-left:auto;
-	width:36px;
-	height: 120px;
-	background-color: #fff;
-	border-radius: 20px 0 0 20px;
-}
-
-div.memo-list-btn svg{
-	margin: 50px 0 0 10px;
-}
-
 </style>
 </head>
 <body>
 	<div class="container">
-		<header>
-			<!-- 왼쪽 사이드 메뉴 -->
-			<div class="logoBlue">
-				<img src="${rootPath}/static/image/logoWhite.png">
-			</div>
-			<nav class="menu-bar">
-				<ul>
-					<li><a href="">메뉴</a></li>
-					<li><a href="">메뉴</a></li>
-					<li><a href="">메뉴</a></li>
-					<li><a href="">메뉴</a></li>
-				</ul>
-			</nav>
-		</header>
-		
 		<div id="map" style="width:100vw;height:100vh;"></div>
 	</div>
 	<!--  구르미 아이콘 -->
 	<nav class="icon-memu-bar">
 		<ul class="icon-menu-ul">
-			<li><a href="${rootPath}/memo/map/all">ALL</a></li>
+			<li><a href="${rootPath}/memo/map/all"><img src="${rootPath}/static/image/logoBlue.png"></a></li>
 			<li><a href="${rootPath}/memo/map/find/static/image/goorme(1).png"><img src="${rootPath}/static/image/goorme(1).png"></a></li>
 			<li><a href="${rootPath}/memo/map/find/static/image/goorme(2).png"><img src="${rootPath}/static/image/goorme(2).png"></a></li>
 			<li><a href="${rootPath}/memo/map/find/static/image/goorme(3).png"><img src="${rootPath}/static/image/goorme(3).png"></a></li>
@@ -402,7 +344,6 @@ div.memo-list-btn svg{
 	<div class="container-wrap">
 		<div class="memo-list-slide">
 			<div class="slide-home"> <a href="${rootPath}/"><i class="fa-solid fa-house"></i></a></div>
-			<div class="memo-list-btn"><i class="fa-solid fa-list"></i></div>
 		</div>
 		<div class="memo-list-wrap">
 			<div class="memo-list-info">
@@ -571,5 +512,4 @@ div.memo-list-btn svg{
 
 </script>
 	<script src="${rootPath}/static/js/memo.js?ver=2022-07-11-005"></script>
-	<script src="${rootPath}/static/js/slide.js?ver=2022-08-02-004"></script>
 </html>

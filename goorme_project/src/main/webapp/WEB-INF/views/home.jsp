@@ -18,8 +18,8 @@ body {
 	top: 40%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 16%;
-	height: 20%;
+	width: 400px;
+	height: 500px;
 }
 
 .logo-img img {
@@ -28,9 +28,11 @@ body {
 }
 
 .btn{
-	width: 100%;
+	width: 80%;
 	margin: 0 auto;
 	margin-top: 40px;
+	display: flex;
+	justify-content:center;
 }
 
 .btn a {
@@ -41,7 +43,7 @@ body {
 	border-radius: 8px;
 }
 .btn a:first-child {
-	margin-left: 26px;
+	margin-right: 12px;
 }
 
 .btn a:hover {
